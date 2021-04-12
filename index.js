@@ -1,15 +1,4 @@
-const crearElemento = (tag, name, value) => {
-    let element = document.createElement(tag);
-    if (name != null) {
-        element.classList.add(name);
-    }
-    if (value != null) {
-        element.append(value);
-    }
-    return element;
-}
- 
- const index  = (url, id) =>{
+const d1  = (url, id) =>{
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', url);
     xhttp.send();
@@ -19,20 +8,28 @@ const crearElemento = (tag, name, value) => {
             let parent = document.getElementById(id);
             let fragment = new DocumentFragment();
             for(let info of datos){
-                let h1 = crearElemento("H1", " title", `${info.titulo} - ${info.categoria} - ${info.fecha}`);
-                let div = crearElemento("DIV", " container-index", h1);
-                let des = crearElemento("P", null, info.descripcion);
-                let link = crearElemento("A", null, "Ver mas");
-                div.append(des);
-                div.append(link);
+                let des = element("P", null, info.titulo);
+                let div = element("DIV", null, des);
                 fragment.append(div);
             }
             parent.append(fragment);
         }
     }
+
+
+
+const element = (tag, name, value) => {
+    let element = document.elemento(tag);
+    if (name != null) {
+        element.classList.add(name);
+    }
+    if (value != null) {
+        element.append(value);
+    }
+    return element;
 }
 
-const indexDeport  = (url, id) =>{
+ const d2  = (url, id) =>{
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', url);
     xhttp.send();
@@ -41,7 +38,17 @@ const indexDeport  = (url, id) =>{
             let datos = JSON.parse(this.responseText);
             let parent = document.getElementById(id);
             let fragment = new DocumentFragment();
-            
+            for(let info of datos){
+                let h1 = element("H1", "title", `${info.titulo} - ${info.categoria} - ${info.fecha}`);
+                let div = element("DIV", "container-i", h1);
+                let des = element("P", null, info.descripcion);
+                let det = element("P", "close", info.detalle);
+                let link = element("A", null, "Ver mas");
+                div.append(des);
+                des.append(link);
+                div.append(det);
+                fragment.append(div);
+            }
             parent.append(fragment);
         }
     }
